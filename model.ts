@@ -5,8 +5,6 @@ namespace Model {
 
     export class model extends PIXI.utils.EventEmitter {
 
-
-
         constructor() {
             super();
         }
