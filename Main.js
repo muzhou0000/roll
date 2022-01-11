@@ -24,7 +24,10 @@ var View;
             text.anchor.set(0.5, 0.5);
             text.x = this._app.screen.width / 2;
             text.y = this._app.screen.height / 2 - 5;
-            let btn = this.createbtn(0xffffff, 90, 20);
+            let btn = new PIXI.Graphics;
+            btn.beginFill(0xffffff);
+            btn.drawRoundedRect(0, 0, 90, 20, 5);
+            btn.endFill();
             btn.x = text.x - 45;
             btn.y = text.y + 30;
             btn.buttonMode = true;
@@ -36,6 +39,11 @@ var View;
             tiger.x = 138;
             tiger.y = 142;
             this._app.stage.addChild(tiger);
+            btn.on('click', () => {
+                text.text = this.click();
+            });
+        }
+        click() {
             let str = [
                 '大吉',
                 '中吉',
@@ -45,22 +53,8 @@ var View;
                 '凶',
                 '大凶',
             ];
-            btn.on('click', () => {
-                let num = this.click();
-                text.text = str[num];
-            });
-        }
-        click() {
-            let roll = Math.floor(Math.random() * 7);
+            let roll = str[Math.floor(Math.random() * 7)];
             return roll;
-        }
-        createbtn(color, w, h) {
-            let btn = new PIXI.Graphics();
-            btn.beginFill(color);
-            btn.drawRoundedRect(0, 0, w, h, 5);
-            btn.endFill();
-            this._app.stage.addChild(btn);
-            return btn;
         }
     }
     View.view = view;

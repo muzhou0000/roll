@@ -36,7 +36,10 @@ namespace View {
             text.x=this._app.screen.width/2;
             text.y=this._app.screen.height/2-5;
             
-            let btn:PIXI.Graphics=this.createbtn(0xffffff,90,20);
+            let btn:PIXI.Graphics=new PIXI.Graphics;
+            btn.beginFill(0xffffff);
+            btn.drawRoundedRect(0,0,90,20,5);
+            btn.endFill();
             btn.x=text.x-45;
             btn.y=text.y+30;
             btn.buttonMode=true;
@@ -51,8 +54,11 @@ namespace View {
             this._app.stage.addChild(tiger);
 
 
-            
-
+            btn.on('click',()=>{
+                text.text=this.click();
+            })
+        }
+        private click():string{
             let str:string[]=[
                 '大吉',
                 '中吉',
@@ -64,25 +70,9 @@ namespace View {
             ]
 
 
-            btn.on('click',()=>{
-                let num=this.click();
-                text.text=str[num];
-            })
-        }
-        private click():number{
-            let roll:number=Math.floor(Math.random() *7);
+            let roll:string=str[Math.floor(Math.random() *7)];
 
             return roll;
         }
-        private createbtn(color:any,w:number,h:number):PIXI.Graphics{
-            let btn:PIXI.Graphics=new PIXI.Graphics();
-            btn.beginFill(color);
-            btn.drawRoundedRect(0,0,w,h,5);
-            btn.endFill();
-            this._app.stage.addChild(btn);
-
-            return btn;
-        }
-
    }
 }
