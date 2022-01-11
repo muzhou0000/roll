@@ -53,12 +53,6 @@ namespace View {
             tiger.y=142;
             this._app.stage.addChild(tiger);
 
-
-            btn.on('click',()=>{
-                text.text=this.click();
-            })
-        }
-        private click():string{
             let str:string[]=[
                 '大吉',
                 '中吉',
@@ -69,8 +63,12 @@ namespace View {
                 '大凶',
             ]
 
-
-            let roll:string=str[Math.floor(Math.random() *7)];
+            btn.on('click',()=>{
+                text.text=this.click(str);
+            })
+        }
+        private click(strAry:string[]):string{
+            let roll:string=strAry[Math.floor(Math.random() *7)];
 
             return roll;
         }

@@ -39,11 +39,6 @@ var View;
             tiger.x = 138;
             tiger.y = 142;
             this._app.stage.addChild(tiger);
-            btn.on('click', () => {
-                text.text = this.click();
-            });
-        }
-        click() {
             let str = [
                 '大吉',
                 '中吉',
@@ -53,7 +48,12 @@ var View;
                 '凶',
                 '大凶',
             ];
-            let roll = str[Math.floor(Math.random() * 7)];
+            btn.on('click', () => {
+                text.text = this.click(str);
+            });
+        }
+        click(strAry) {
+            let roll = strAry[Math.floor(Math.random() * 7)];
             return roll;
         }
     }
