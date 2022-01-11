@@ -3,7 +3,10 @@ var View;
 (function (View) {
     class view {
         constructor(controller, model) {
+<<<<<<< HEAD
             this._scale = 0;
+=======
+>>>>>>> f86caaa52fa5fe8421e2c5465997c048c78c43a8
             this._app = new PIXI.Application(300, 300, { backgroundColor: 0xD1E292 });
             document.body.appendChild(this._app.view);
             this._model = model;
@@ -12,6 +15,7 @@ var View;
         }
         init() {
             let text = new PIXI.Text('大吉大利', { fill: 0xffffff });
+<<<<<<< HEAD
             text.x = 75;
             text.y = 50;
             text.pivot.set(0.5, 0.5);
@@ -24,6 +28,20 @@ var View;
             btn.interactive = true;
             btn.x = text.x;
             btn.y = text.y + 50;
+=======
+            this._app.stage.addChild(text);
+            text.anchor.set(0.5, 0.5);
+            text.x = this._app.screen.width / 2;
+            text.y = this._app.screen.height / 2;
+            let btn = new PIXI.Graphics();
+            btn.beginFill(0xffffff);
+            btn.drawRoundedRect(0, 0, 90, 20, 5);
+            btn.endFill();
+            btn.x = text.x - 45;
+            btn.y = text.y + 30;
+            btn.buttonMode = true;
+            btn.interactive = true;
+>>>>>>> f86caaa52fa5fe8421e2c5465997c048c78c43a8
             this._app.stage.addChild(btn);
             btn.on('click', () => {
                 text.text = this.click();
@@ -39,7 +57,11 @@ var View;
                 '凶',
                 '大凶',
             ];
+<<<<<<< HEAD
             let roll = str[Math.floor(Math.random() * (str.length))];
+=======
+            let roll = str[Math.floor(Math.random() * str.length)];
+>>>>>>> f86caaa52fa5fe8421e2c5465997c048c78c43a8
             return roll;
         }
     }
