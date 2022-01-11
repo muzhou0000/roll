@@ -3,51 +3,39 @@ var View;
 (function (View) {
     class view {
         constructor(controller, model) {
-<<<<<<< HEAD
-            this._scale = 0;
-=======
->>>>>>> f86caaa52fa5fe8421e2c5465997c048c78c43a8
-            this._app = new PIXI.Application(300, 300, { backgroundColor: 0xD1E292 });
+            this._app = new PIXI.Application(300, 300, { backgroundColor: 0xFFF5E4, transparent: false });
             document.body.appendChild(this._app.view);
             this._model = model;
             this._controller = controller;
             this.init();
         }
         init() {
-            let text = new PIXI.Text('大吉大利', { fill: 0xffffff });
-<<<<<<< HEAD
-            text.x = 75;
-            text.y = 50;
-            text.pivot.set(0.5, 0.5);
-            this._app.stage.addChild(text);
-            let btn = new PIXI.Graphics();
-            btn.beginFill(0xffffff);
-            btn.drawRoundedRect(0, 0, 100, 100, 5);
-            btn.endFill();
-            btn.buttonMode = true;
-            btn.interactive = true;
-            btn.x = text.x;
-            btn.y = text.y + 50;
-=======
+            let texture = PIXI.Texture.fromImage('syougatsu_hatsuhinode_fujisan.png');
+            let background = new PIXI.Sprite(texture);
+            background.scale.set(0.5, 0.5);
+            background.x = -2;
+            background.y = 23;
+            this._app.stage.addChild(background);
+            let textStyle = new PIXI.TextStyle({ fill: 0xffffff, fontSize: 50,
+                fontFamily: "\"Palatino Linotype\", \"Book Antiqua\", Palatino, serif",
+            });
+            let text = new PIXI.Text('大吉大利', textStyle);
             this._app.stage.addChild(text);
             text.anchor.set(0.5, 0.5);
             text.x = this._app.screen.width / 2;
-            text.y = this._app.screen.height / 2;
-            let btn = new PIXI.Graphics();
-            btn.beginFill(0xffffff);
-            btn.drawRoundedRect(0, 0, 90, 20, 5);
-            btn.endFill();
+            text.y = this._app.screen.height / 2 - 5;
+            let btn = this.createbtn(0xffffff, 90, 20);
             btn.x = text.x - 45;
             btn.y = text.y + 30;
             btn.buttonMode = true;
             btn.interactive = true;
->>>>>>> f86caaa52fa5fe8421e2c5465997c048c78c43a8
             this._app.stage.addChild(btn);
-            btn.on('click', () => {
-                text.text = this.click();
-            });
-        }
-        click() {
+            let texture2 = PIXI.Texture.fromImage('uchidenokoduchi_eto03_tora.png');
+            let tiger = new PIXI.Sprite(texture2);
+            tiger.scale.set(0.2, 0.2);
+            tiger.x = 138;
+            tiger.y = 142;
+            this._app.stage.addChild(tiger);
             let str = [
                 '大吉',
                 '中吉',
@@ -57,12 +45,22 @@ var View;
                 '凶',
                 '大凶',
             ];
-<<<<<<< HEAD
-            let roll = str[Math.floor(Math.random() * (str.length))];
-=======
-            let roll = str[Math.floor(Math.random() * str.length)];
->>>>>>> f86caaa52fa5fe8421e2c5465997c048c78c43a8
+            btn.on('click', () => {
+                let num = this.click();
+                text.text = str[num];
+            });
+        }
+        click() {
+            let roll = Math.floor(Math.random() * 7);
             return roll;
+        }
+        createbtn(color, w, h) {
+            let btn = new PIXI.Graphics();
+            btn.beginFill(color);
+            btn.drawRoundedRect(0, 0, w, h, 5);
+            btn.endFill();
+            this._app.stage.addChild(btn);
+            return btn;
         }
     }
     View.view = view;
