@@ -34,6 +34,7 @@ var View;
             btn.interactive = true;
             this._app.stage.addChild(btn);
             let texture2 = PIXI.Texture.fromImage('uchidenokoduchi_eto03_tora.png');
+            let texture3 = PIXI.Texture.fromImage('eto_tora_daruma.png');
             let tiger = new PIXI.Sprite(texture2);
             tiger.scale.set(0.2, 0.2);
             tiger.x = 138;
@@ -49,11 +50,22 @@ var View;
                 '大凶',
             ];
             btn.on('click', () => {
-                text.text = this.click(str);
+                let ranNum = this.click();
+                if (ranNum > 3) {
+                    tiger.texture = texture3;
+                    tiger.x = 85;
+                    tiger.y = 174;
+                }
+                else {
+                    tiger.texture = texture2;
+                    tiger.x = 138;
+                    tiger.y = 142;
+                }
+                text.text = str[ranNum];
             });
         }
-        click(strAry) {
-            let roll = strAry[Math.floor(Math.random() * 7)];
+        click() {
+            let roll = Math.floor(Math.random() * 7);
             return roll;
         }
     }

@@ -4,7 +4,6 @@ namespace View {
         private _controller: Controller.controller;
         private _model: Model.model;
 
-
         constructor(controller: Controller.controller, model: Model.model) {
 
             this._app = new PIXI.Application(300, 300, { backgroundColor: 0xFFF5E4,transparent:false });
@@ -46,7 +45,10 @@ namespace View {
             btn.interactive=true;
             this._app.stage.addChild(btn);
 
+
             let texture2:PIXI.Texture=PIXI.Texture.fromImage('uchidenokoduchi_eto03_tora.png');
+            let texture3:PIXI.Texture=PIXI.Texture.fromImage('eto_tora_daruma.png');
+
             let tiger:PIXI.Sprite=new PIXI.Sprite(texture2);
             tiger.scale.set(0.2,0.2);
             tiger.x=138;
@@ -64,11 +66,22 @@ namespace View {
             ]
 
             btn.on('click',()=>{
-                text.text=this.click(str);
+                let ranNum:number=this.click();
+                if(ranNum>3){
+                    tiger.texture=texture3;
+                    tiger.x=85;
+                    tiger.y=174;
+                }else{
+                    tiger.texture=texture2;
+                    tiger.x=138;
+                    tiger.y=142;
+                }
+
+                text.text=str[ranNum];
             })
         }
-        private click(strAry:string[]):string{
-            let roll:string=strAry[Math.floor(Math.random() *7)];
+        private click():number{
+            let roll:number=Math.floor(Math.random() *7);
 
             return roll;
         }
