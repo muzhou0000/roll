@@ -1,9 +1,71 @@
 <!DOCTYPE html>
+
 <head>
     <title></title>
 </head>
+
 <body>
     <script src="./pixi.js"></script>
     <script src="./Main.js"></script>
+    <!-- Vue 3.x-->
+    <script src="https://unpkg.com/vue@3"></script>
+
+    <!-- <div id="app">
+        <h1>{{ message }}</h1>
+    </div> -->
+    <div id="app">
+        <p>1日幣=0.24台幣</p>
+        <div>台幣<input type="text" v-model="twd" v-on:input="twd"></div>
+        <div>日幣<input type="text" v-model="jpy" v-on:input="jpy"></div>
+        <div>美元<input type="text" v-model="usd" v-on:input="usd"></div>
+    </div>  
+
+    <script>
+        // let str = {
+        // message: 'cccc',
+        // }
+        // let vm = Vue.createApp({
+        //     data() {
+        //         return { ...str };
+        //     }
+        // }).mount("#app");
+
+        // vm.$data.message = 'BBBBBBBB';
+
+        let vm2 = Vue.createApp({
+            // template: `<div>{{uwu}}{{subtotal()}}{{ add }}</div>`, //這樣可以幫空的div加內容
+            data() {
+                return {
+                    twd:0.24,
+                }
+            },
+            computed:{
+                jpy:{
+                    get(){
+                        return Number.parseFloat(Number(this.twd)/0.24).toFixed(3);
+                    },
+                    set(val){
+                        this.twd=Number.parseFloat(Number(val)*0.278).toFixed(3);
+                    }
+                },
+                usd:{
+                    get(){
+                        return Number.parseFloat(Number(this.twd)/28.26).toFixed(3);
+                    },
+                    set(val){
+                        this.twd=Number.parseFloat(Number(val)*28.26).toFixed(3);
+                    }
+                }
+            }
+            // methods: {
+            //     twd2jpy() {
+            //         this.jpy=Number.parseFloat(Number(this.twd)/0.24).toFixed(3);
+            //     },
+            //     jpy2twd() {
+            //         this.twd=Number.parseFloat(Number(this.jpy)*0.24).toFixed(3);
+            //     }
+            // },
+        }).mount("#app");</script>
 </body>
+
 </html>

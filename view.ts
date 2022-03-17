@@ -11,9 +11,10 @@ namespace View {
 
             this._model = model;
             this._controller = controller;
+            
             this.init();
-        }
 
+        }
 
         private init(): void {
 
